@@ -1,4 +1,4 @@
-package candidatura;
+	package candidatura;
 
 import java.util.Iterator;
 import java.util.Random;
