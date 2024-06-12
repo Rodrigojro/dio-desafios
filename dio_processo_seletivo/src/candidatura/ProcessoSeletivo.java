@@ -1,14 +1,62 @@
 package candidatura;
 
+import java.util.Iterator;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ProcessoSeletivo {
 	public static void main(String[] args) {
-		selecaoCandidatos();
+		String [] candidatos = {"RODRIGO","FELIPE","LARA","CRISTIAN","CARLOS"};
+		for(String candidato: candidatos) {
+			entrandoEmContato(candidato);
+			
+		}
+	}
+	static void entrandoEmContato(String candidato){
+		int tentativasRealizadas = 1;
+		boolean continuarTentando = true;
+		boolean atendeu = false;
+		do {
+			atendeu = atender();
+			continuarTentando = !atendeu;
+			if(continuarTentando) {
+				tentativasRealizadas++;
+			}
+				System.out.println("Contato realizado com sucesso!");
+			
+		} while(continuarTentando && tentativasRealizadas < 3);
+		
+		if(atendeu) {
+			System.out.println("Conseguimos contato com " + candidato + " na " + tentativasRealizadas + " tentativa");
+		} else 
+			System.out.println("Não conseguimos contato com " + candidato + ", numero maximo de tentativas de " + tentativasRealizadas + " realizadas");
 	}
 	
+	//Método auxiliar
+	static boolean atender() {
+		return new Random().nextInt(3)==1;
+	}
+	
+	static void imprimirSelecionados() {
+		String [] candidatos = {"RODRIGO","FELIPE","LARA","CRISTIAN","CARLOS"};
+		
+		System.out.println("Imprimindo a lista de candidatos informando o índice do elemento");
+
+		for(int indice = 0; indice < candidatos.length; indice++) {
+			System.out.println("O candidato de n° " + (indice+1) + " é o " + candidatos[indice]);
+		}
+		
+		
+		System.out.println("Forma abreviada de iteração for each");
+		
+		for(String candidato: candidatos) {
+			System.out.println("O Candidato selecionado foi " + candidato);
+		}
+	}
+	
+	
 	static void selecaoCandidatos() {
-		String [] candidatos = {"RODRIGO","FELIPE","JULIO","CRISTIAN","CARLOS","LARA","ANASTACIA","PAUL","ANDRE","KIKO"};
+		String [] candidatos = {"RODRIGO","FELIPE","LARA","CRISTIAN","CARLOS","JUANITA","ANASTACIA","PAUL","ANDRE","KIKO"};
 		
 		int candidatosSelecionados = 0;
 		int candidatosAtual = 0;
